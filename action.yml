@@ -1,0 +1,19 @@
+name: 'Schema check'
+description: 'checks schema'
+inputs:
+  token:  # id of input
+    description: 'token for cli'
+    required: true
+    default: ''
+outputs:
+  result:
+    description: "check result"
+    value: ${{ steps.schema-check.outputs }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo starting script.
+      shell: bash
+    - id: schema-check
+      run: check.sh
+      shell: bash
