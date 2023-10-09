@@ -12,8 +12,8 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo starting script.
-      shell: bash
+    - run: install inigo cli
+      shell: node cli_download.js
     - id: schema-check
       run: check.sh
       shell: bash
