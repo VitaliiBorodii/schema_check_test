@@ -12,8 +12,9 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: install inigo cli
-      shell: node cli_download.js
+    - name: install inigo cli
+      shell: bash
+      run: wget -c https://github.com/inigolabs/artifacts/releases/latest/download/cli_linux_amd64.tar.gz -O - | tar -xz;
     - id: schema-check
       run: check.sh
       shell: bash
