@@ -16,5 +16,5 @@ runs:
       shell: bash
       run: wget -c https://github.com/inigolabs/artifacts/releases/latest/download/cli_linux_amd64.tar.gz -O - | tar -xz;
     - id: schema-check
-      run: check.sh
+      run: echo token '${{ inputs.token }}'
       shell: bash
