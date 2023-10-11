@@ -12,7 +12,7 @@ inputs:
 outputs:
   result:
     description: "check result"
-    value: ${{ steps.print-services }}
+    value: ${{ steps.print-services.services }}
 runs:
   using: "composite"
   steps:
@@ -25,10 +25,10 @@ runs:
     - id: print-token
       env:
         INIGO_TOKEN: ${{inputs.token}}
-      run: echo $TOKEN
+      run: echo $INIGO_TOKEN
       shell: bash
     - id: print-services
       env:
         INIGO_TOKEN: ${{inputs.token}}
-      run: echo "$(./inigo get service)" >> $GITHUB_OUTPUT
+      run: echo "services=$(./inigo get service)" >> $GITHUB_OUTPUT
       shell: bash
