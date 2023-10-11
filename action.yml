@@ -32,5 +32,7 @@ runs:
       shell: bash
     - id: schema-check-print
       run: ./inigo check ${{input.configs}}
+      shell: bash
     - id: schema-check
       run: echo "result=$(./inigo check ${{input.configs}})" >> $GITHUB_OUTPUT
+      shell: bash
