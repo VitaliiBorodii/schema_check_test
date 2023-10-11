@@ -24,11 +24,11 @@ runs:
       shell: bash
     - id: print-token
       env:
-        TOKEN: ${{inputs.token}}
+        INIGO_TOKEN: ${{inputs.token}}
       run: echo $TOKEN
       shell: bash
     - id: print-services
       env:
-        TOKEN: ${{inputs.token}}
-      run: echo "$(TOKEN=${{inputs.token}} ./inigo get service)" >> $GITHUB_OUTPUT
+        INIGO_TOKEN: ${{inputs.token}}
+      run: echo "$(./inigo get service)" >> $GITHUB_OUTPUT
       shell: bash
