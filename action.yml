@@ -18,6 +18,7 @@ runs:
   steps:
     - name: save inigo token to env
       run: echo "INIGO_TOKEN=${{inputs.token}}" >> $GITHUB_ENV
+      shell: bash
     - name: save inigo url to env
       run: echo "INIGO_API_URL=${{inputs.apiUrl}}" >> $GITHUB_ENV
       shell: bash
