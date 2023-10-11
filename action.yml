@@ -1,10 +1,14 @@
 name: 'Schema check'
 description: 'checks schema'
 inputs:
-  token:  # id of input
+  token:
     description: 'token for cli'
     required: true
-    default: ''
+  configs:
+    description: 'path to config files'
+    required: true
+  apiUrl:
+    description: 'url of inigo api'
 outputs:
   result:
     description: "check result"
