@@ -15,9 +15,10 @@ outputs:
     value: ${{ steps.schema-check.result }}
 runs:
   using: "composite"
-  env:
-    INIGO_TOKEN: ${{inputs.token}}
   steps:
+    - name: save inigo token to env
+      run: echo "INIGO_TOKEN=${{inputs.token}}" >> $GITHUB_ENV
+      shell: bash
     - name: install inigo cli
       shell: bash
       run: wget -c https://github.com/inigolabs/artifacts/releases/latest/download/cli_linux_amd64.tar.gz -O - | tar -xz;
