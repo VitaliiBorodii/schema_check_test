@@ -15,8 +15,14 @@ runs:
     - name: install inigo cli
       shell: bash
       run: wget -c https://github.com/inigolabs/artifacts/releases/latest/download/cli_linux_amd64.tar.gz -O - | tar -xz;
+    - id: print-folder
+      run: ls -la ./
+      shell: bash
+    - id: print-version
+      run: ./inigo --version
+      shell: bash
     - id: print-services
       env:
         TOKEN: ${{inputs.token}}
-      run: echo "$(inigo get service)" >> $GITHUB_OUTPUT
+      run: echo "$(./inigo get service)" >> $GITHUB_OUTPUT
       shell: bash
