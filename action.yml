@@ -12,9 +12,11 @@ inputs:
 outputs:
   result:
     description: "check result"
-    value: ${{ steps.print-services.services }}
+    value: ${{ steps.schema-check.result }}
 runs:
   using: "composite"
+  env:
+    INIGO_TOKEN: ${{inputs.token}}
   steps:
     - name: install inigo cli
       shell: bash
@@ -23,12 +25,12 @@ runs:
       run: ./inigo --version
       shell: bash
     - id: print-token
-      env:
-        INIGO_TOKEN: ${{inputs.token}}
       run: echo $INIGO_TOKEN
       shell: bash
     - id: print-services
-      env:
-        INIGO_TOKEN: ${{inputs.token}}
-      run: echo "services=$(./inigo get service)" >> $GITHUB_OUTPUT
+      run: echo $(./inigo get service)
       shell: bash
+    - id: schema-check-print
+      run: ./inigo check ${{input.configs}}
+    - id: schema-check
+      run: echo "result=$(./inigo check ${{input.configs}})" >> $GITHUB_OUTPUT
