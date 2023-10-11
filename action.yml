@@ -18,6 +18,8 @@ runs:
   steps:
     - name: save inigo token to env
       run: echo "INIGO_TOKEN=${{inputs.token}}" >> $GITHUB_ENV
+    - name: save inigo url to env
+      run: echo "INIGO_API_URL=${{inputs.apiUrl}}" >> $GITHUB_ENV
       shell: bash
     - name: install inigo cli
       shell: bash
@@ -28,12 +30,15 @@ runs:
     - id: print-token
       run: echo $INIGO_TOKEN
       shell: bash
+    - id: print-url
+      run: echo $INIGO_API_URL
+      shell: bash
     - id: print-services
       run: echo $(./inigo get service)
       shell: bash
     - id: schema-check-print
-      run: ./inigo check ${{input.configs}}
+      run: ./inigo check ${{inputs.configs}}
       shell: bash
     - id: schema-check
-      run: echo "result=$(./inigo check ${{input.configs}})" >> $GITHUB_OUTPUT
+      run: echo "result=$(./inigo check ${{inputs.configs}})" >> $GITHUB_OUTPUT
       shell: bash
