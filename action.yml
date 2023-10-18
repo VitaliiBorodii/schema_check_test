@@ -28,9 +28,6 @@ runs:
     - id: print-version
       run: ./inigo --version
       shell: bash
-    - id: print-token
-      run: echo $INIGO_TOKEN
-      shell: bash
     - id: print-url
       run: echo $INIGO_API_URL
       shell: bash
@@ -41,5 +38,7 @@ runs:
       run: ./inigo check ${{inputs.configs}}
       shell: bash
     - id: schema-check
-      run: echo "result=$(./inigo check ${{inputs.configs}})" >> $GITHUB_OUTPUT
+      run: |
+        ./inigo check ${{inputs.configs}}
+        echo "result=$?" >> $GITHUB_OUTPUT
       shell: bash
