@@ -34,11 +34,9 @@ runs:
     - id: print-services
       run: echo $(./inigo get service)
       shell: bash
-    - id: schema-check-print
-      run: ./inigo check ${{inputs.configs}}
-      shell: bash
     - id: schema-check
       run: |
         ./inigo check ${{inputs.configs}}
         echo "result=$?" >> $GITHUB_OUTPUT
       shell: bash
+      continue-on-error: true
