@@ -35,7 +35,12 @@ runs:
       run: echo $(./inigo get service)
       shell: bash
     - id: schema-check
-      run: echo "result=$(./inigo check ${{inputs.configs}} | sed 's/(?<=inigo bypass).*//')" >> $GITHUB_OUTPUT
+      run: |
+        {
+          echo 'result<<EOF'
+          ./inigo check ${{inputs.configs}} | sed 's/(?<=inigo bypass).*//'
+          echo EOF
+        } >> "$GITHUB_ENV"}
       # run: echo "result=$(./inigo check ${{inputs.configs}})" >> $GITHUB_OUTPUT
       shell: bash
       continue-on-error: true
