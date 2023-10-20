@@ -41,4 +41,4 @@ runs:
           echo EOF >> "$GITHUB_ENV"}
       # run: echo "result=$(./inigo check ${{inputs.configs}})" >> $GITHUB_OUTPUT
       shell: bash
-      continue-on-error: true
+      # continue-on-error: true
